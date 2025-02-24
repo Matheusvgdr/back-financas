@@ -6,9 +6,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class UsuarioService {
     public void saveUsuario(){
-        var usuario = new UsuarioModel("Teste", "Teste5", "12345");
+        var usuario = new UsuarioModel();
         UsuarioModel.persist(usuario);
-
-        var opi = 0;
     }
 }

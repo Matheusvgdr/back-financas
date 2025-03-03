@@ -18,22 +18,12 @@ public class UserModel extends PanacheEntityBase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column()
     public Long id;
-
-    @Column()
     public String name;
-
     @Column( unique = true)
     private String username;
-
-    @Column()
     private String password;
-
-    @Column()
     private String email;
-
-    @Column()
     private UserTypeEnum userType;
 
 }

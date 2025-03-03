@@ -3,7 +3,7 @@ package com.projetos.services;
 import com.projetos.constants.enums.UserTypeEnum;
 import com.projetos.constants.messages.user.UserMessage;
 import com.projetos.dto.requests.user.UserRequest;
-import com.projetos.dto.responses.ResponseDefault;
+import com.projetos.dto.responses.ApiResponse;
 import com.projetos.dto.responses.user.UserResponse;
 import com.projetos.entities.UserModel;
 import com.projetos.utils.helper.PasswordHelper;
@@ -20,9 +20,9 @@ import java.util.stream.Collectors;
 public class UserService {
 
     @Inject
-    UserMapper userMapper;
+     UserMapper userMapper;
 
-    public ResponseDefault<?> saveUser(UserRequest userRequest) {
+    public ApiResponse<?> saveUser(UserRequest userRequest) {
         try {
             var newUser = userMapper.toUserModel(userRequest);
 
@@ -31,14 +31,14 @@ public class UserService {
 
             UserModel.persist(newUser);
 
-            return new ResponseDefault<>(null, UserMessage.USER_CREATED, HttpResponseStatus.CREATED.code());
+            return new ApiResponse<>(null, UserMessage.USER_CREATED, HttpResponseStatus.CREATED.code());
 
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public ResponseDefault<Set<UserResponse>> getUsers() {
+    public ApiResponse<Set<UserResponse>> getUsers() {
 
         PanacheQuery<UserModel> usersQuery = UserModel.findAll();
 
@@ -46,6 +46,6 @@ public class UserService {
                 .map(user -> userMapper.toUserResponse(user))
                 .collect(Collectors.toSet());
 
-        return new ResponseDefault<>(formattedUsers, UserMessage.USERS_FIND, HttpResponseStatus.OK.code());
+        return new ApiResponse<>(formattedUsers, UserMessage.USERS_FIND, HttpResponseStatus.OK.code());
     }
 }

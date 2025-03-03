@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResponseDefault<T> {
+public class ApiResponse<T> {
     private T data;
     private String message;
     private Integer httpStatus;

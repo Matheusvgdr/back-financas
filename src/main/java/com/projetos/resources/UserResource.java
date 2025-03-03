@@ -4,6 +4,7 @@ import com.projetos.dto.requests.user.UserRequest;
 import com.projetos.services.UserService;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -24,7 +25,7 @@ public class UserResource {
 
     @POST
     @Transactional
-    public Response saveUser(UserRequest userRequest) {
+    public Response saveUser(@Valid UserRequest userRequest) {
         var result = userService.saveUser(userRequest);
         return Response.status(result.getHttpStatus()).entity(result).build();
     }

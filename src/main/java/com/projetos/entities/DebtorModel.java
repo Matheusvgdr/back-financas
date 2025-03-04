@@ -1,6 +1,5 @@
 package com.projetos.entities;
 
-import com.projetos.constants.enums.UserTypeEnum;
 import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,17 +12,10 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "tb001_user")
-public class UserModel extends PanacheEntityBase {
-
-    @Id
+@Table(name = "tb002_debtor")
+public class DebtorModel extends PanacheEntityBase {
+    @Id()
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long id;
     public String name;
-    @Column( unique = true)
-    public String username;
-    public String password;
-    public String email;
-    public UserTypeEnum userType;
-
 }

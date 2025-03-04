@@ -24,7 +24,6 @@ public class UserResource {
     }
 
     @POST
-    @Transactional
     public Response saveUser(@Valid UserRequest userRequest) {
         var result = userService.saveUser(userRequest);
         return Response.status(result.getHttpStatus()).entity(result).build();
